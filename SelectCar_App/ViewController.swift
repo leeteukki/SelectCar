@@ -14,18 +14,25 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     let carCompanyName = ["teala", "Lamborghini", "Porsche"]
     var carModel : [String] = []
+    var carModelImage : [String] = []
     
+    // Picker Model Name
     let tesla = ["Model-S", "Model-X"]
-    
     let lamborghini = ["aventador", "veneno", "huracan"]
-    
     let porsche = ["911", "boxter"]
     
+    // Picker Model Image
+    let teslaImageNames = ["tesla-model-s.jpg", "tesla-model-x.jpg"]
+    let lamborghiniImageName = ["lamborghini-aventador.jps", "lamborghini-veneno.jpg", "lamborghini-huracan.jpg"]
+    let porscheImageName = ["porsche-911.jpg", "porsche-boxter.jpg"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         carModel = tesla
-        // Do any additional setup after loading the view, typically from a nib.
+        carModelImage = tesla
+        
+        imageView.layer.cornerRadius = 50.0
+        imageView.layer.masksToBounds = true
     }
     
     //UIpicker datasourcs
@@ -54,16 +61,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         if component == 0 && row == 0 {
             carModel = tesla
+            carModelImage = teslaImageNames
+            
         }else if component == 0 && row == 1 {
             carModel = lamborghini
+            carModelImage = lamborghiniImageName
             
         }else if component == 0 && row == 2 {
             carModel = porsche
-            
+            carModelImage = porscheImageName
         }
         
         pickerView.reloadAllComponents()
         
+        imageView.image = UIImage(named: carModelImage[pickerView.selectedRow(inComponent: 1 )])
     }
     
     
